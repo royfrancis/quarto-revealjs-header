@@ -1,8 +1,8 @@
-# reveal-logo
+# revealjs-header
 
-A quarto extension to add logos to revealjs presentation
+A quarto extension to add header logos to revealjs presentation
 
-![](preview.jpg)
+![](preview.webp)
 
 - Add one or two logos on the top
 - Add a URL as a clickable link
@@ -15,7 +15,7 @@ A quarto extension to add logos to revealjs presentation
 - Run in the terminal
 
 ```
-quarto add royfrancis/quarto-reveal-logo
+quarto add royfrancis/quarto-revealjs-header
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ quarto add royfrancis/quarto-reveal-logo
 
 ```yaml
 filters:
-  - reveal-logo
+  - revealjs-header
 ```
 
 - Add parameters to `format: revealjs`.
@@ -38,7 +38,7 @@ filters:
 |`header-logo-left-url`|Add a clickable link to the left logo|
 |`header-logo-right-url`|Add a clickable link to the right logo|
 
-For more information, click [here](https://royfrancis.github.io/quarto-reveal-logo).
+For more information, click [here](https://royfrancis.github.io/quarto-revealjs-header).
 
 ## Acknowledgements
 

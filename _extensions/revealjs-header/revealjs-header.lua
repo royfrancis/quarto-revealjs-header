@@ -2,12 +2,12 @@
 
 local function ensureHtmlDeps()
   quarto.doc.add_html_dependency({
-  name = "reveal-logo",
+  name = "revealjs-header",
   version = "1.0.0",
   scripts = {
-    { path = "resources/js/reveal-logo.js", attribs = {defer = "true"}}
+    { path = "resources/js/revealjs-header.js", attribs = {defer = "true"}}
   },
-  stylesheets = {"resources/css/reveal-logo.css"}
+  stylesheets = {"resources/css/revealjs-header.css"}
 })
 end
 

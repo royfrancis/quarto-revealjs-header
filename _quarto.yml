@@ -5,24 +5,22 @@ project:
 website:
   page-footer:
     border: false
-    left: "2024 • Roy Francis"
-    right: "Published with [Quarto](https://quarto.org/) v<?quarto.version?>"
-  site-url: "https://royfrancis.github.io/reveal-logo/"
+    left: "{{< meta current_year >}} • Roy Francis"
+    right: "Published with [Quarto](https://quarto.org/) v{{< meta quarto_version >}}"
+  site-url: "https://royfrancis.github.io/revealjs-header/"
 
 format:
   html:
-    engine: knitr
     title-block-banner: true
-    title: reveal-logo
+    title: revealjs-header
     subtitle: Add logos to revealjs presentation
     description: A quarto extension to add logos to revealjs presentation
     author: Roy Francis
   revealjs:
-    engine: knitr
-    title: reveal-logo
+    title: revealjs-header
     subtitle: Add logos to revealjs presentation
     description: A quarto extension to add logos to revealjs presentation
 
 filters:
-  - reveal-logo
+  - revealjs-header
   - custom.lua

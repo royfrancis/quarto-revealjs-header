@@ -1,15 +1,14 @@
 ---
-title: reveal-logo
+title: revealjs-header
 author: Roy Francis
 date: last-modified
 date-format: DD-MMM-YYYY
 format: html
-engine: knitr
 ---
 
 ## Demo
 
-[![](preview.jpg)](tests/demo/index.html)
+![](preview.webp)
 
 [Demo presentation](tests/demo/index.html)
 
@@ -17,10 +16,8 @@ engine: knitr
 
 Install extension to root of the project. Requires Quarto >=1.2.0.
 
-```{bash}
-#| eval: false
-#| filename: bash
-quarto add royfrancis/quarto-reveal-logo
+```bash
+quarto add royfrancis/quarto-revealjs-header
 ```
 
 ## Usage
@@ -29,7 +26,7 @@ Add to filters in yaml metadata
 
 ```yaml
 filters:
-  - reveal-logo
+  - revealjs-header
 ```
 
 Add parameters to `format: revealjs`.

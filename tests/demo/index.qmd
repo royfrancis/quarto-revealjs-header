@@ -1,16 +1,14 @@
 ---
-title: reveal-logo
+title: revealjs-header
 subtitle: Add logos to revealjs
-author: Roy Francis
 date: last-modified
 date-format: DD-MMM-YYYY
 format:
   revealjs:
     header-logo-left: ../quarto.png
-    header-logo-left-url: https://royfrancis.com/reveal-logo
+    header-logo-left-url: https://royfrancis.com/revealjs-header
     header-logo-right: ../reveal.svg
     header-logo-right-url: https://revealjs.com
-engine: knitr
 ---
 
 ## Install
@@ -19,7 +17,7 @@ engine: knitr
 - Install extension to root of the project
 
 ```bash
-quarto add royfrancis/reveal-logo
+quarto add royfrancis/revealjs-header
 ```
 
 ## Usage
@@ -28,7 +26,7 @@ quarto add royfrancis/reveal-logo
 
 ```yaml
 filters:
-  - reveal-logo
+  - revealjs-header
 ```
 
 ## Usage
@@ -67,5 +65,3 @@ format:
 
 - [Quarto](https://quarto.org)
 - [shafayetShafee/reveal-header](https://github.com/shafayetShafee/reveal-header)
-
-

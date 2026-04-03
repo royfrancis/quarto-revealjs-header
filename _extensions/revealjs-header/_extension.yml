@@ -1,8 +1,7 @@
-title: Reveal-logo
+title: revealjs-header
 author: Roy Francis
-version: 1.0.0
+version: 1.0.1
 quarto-required: ">=1.2.0"
 contributes:
   filters:
-    - reveal-logo.lua
-
+    - revealjs-header.lua
