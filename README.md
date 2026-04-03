@@ -47,4 +47,4 @@ For more information, click [here](https://royfrancis.github.io/quarto-revealjs-
 
 ---
 
-2024 • Roy Francis
+2026 • Roy Francis
