@@ -1,4 +1,4 @@
-# revealjs-header
+# revealjs-header ![build](https://github.com/royfrancis/quarto-revealjs-header/workflows/deploy/badge.svg)
 
 A quarto extension to add header logos to revealjs presentation
 

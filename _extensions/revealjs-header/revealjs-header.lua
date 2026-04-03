@@ -1,87 +1,127 @@
--- quarto revealjs logo extension --
+-- quarto revealjs-header extension
 
-local function ensureHtmlDeps()
+--- Register JavaScript and CSS assets for this extension.
+--- This is safe to call once for revealjs documents.
+local function ensure_html_dependencies()
   quarto.doc.add_html_dependency({
-  name = "revealjs-header",
-  version = "1.0.0",
-  scripts = {
-    { path = "resources/js/revealjs-header.js", attribs = {defer = "true"}}
-  },
-  stylesheets = {"resources/css/revealjs-header.css"}
-})
+    name = "revealjs-header",
+    scripts = {
+      { path = "revealjs-header.js", attribs = { defer = "true" } }
+    },
+    stylesheets = { "revealjs-header.css" }
+  })
 end
 
-if quarto.doc.is_format('revealjs') then
-  -- Ensuring the dependencies got loaded before proceeding
-  ensureHtmlDeps()
-  function Pandoc(doc)
-    local blocks = doc.blocks
-    local str = pandoc.utils.stringify
-    local meta = doc.meta
+--- Convert a metadata value to a non-empty string.
+--- @param value any Metadata value.
+--- @return string|nil
+local function to_non_empty_string(value)
+  if value == nil then
+    return nil
+  end
 
-    -- read and stringify input if it exists
-    local function makeString(path)
-      if path == nil or path == '' then
-        return nil
-      else
-        return pandoc.utils.stringify(path)
-      end
-    end
+  local as_string = pandoc.utils.stringify(value)
+  if as_string == nil then
+    return nil
+  end
 
-    -- make image
-    local function makeImage(path, height)
-      if makeString(height) ~= nil then
-        return pandoc.Image("", path, "", pandoc.Attr("", {}, {{"style", "height:" .. height .. ";max-width:none;"}}))
-      else
-        return pandoc.Image("", path, "")
-      end
-    end
+  if as_string:match("^%s*$") then
+    return nil
+  end
 
-    -- convert image to link
-    local function makeLink(img, url)
-      if url ~= nil and url ~= '' then
-        return pandoc.Link(img, url)
-      end
-    end
+  return as_string
+end
 
-    -- insert into div
-    local function makeDiv(x, class)
-      if x == nil or x == '' then
-        return x
-      else
-        return pandoc.Div(x, { class = class })
-      end
-    end
+--- Create a logo image inline.
+--- @param path string Image path.
+--- @param height string|nil CSS height (for example "50px" or "2em").
+--- @return Inline
+local function make_image(path, height)
+  local image_attr = pandoc.Attr("", {}, {})
 
-    -- build a div with logo
-    -- @param path Path to an image (string)
-    -- @param url A link / url (string)
-    -- @param height Height of the image in css units (string)
-    -- @param class Class of the div with logo (string)
-    --
-    local function makeLogo(path, url, height, class)
-      if makeString(path) ~= nil and makeString(url) ~= nil then
-        return makeDiv(makeLink(makeImage(makeString(path), makeString(height)), makeString(url)), class)
-      elseif makeString(path) ~= nil and makeString(url) == nil then
-        return makeDiv(makeImage(makeString(path), makeString(height)), class)
-      else
-        return makeDiv(" ", class)
-      end
-    end
+  if height ~= nil then
+    image_attr = pandoc.Attr("", {}, {
+      { "style", "height:" .. height .. ";max-width:none;" }
+    })
+  end
 
-    -- make divs structure for holding text and logo.
-    local header_img_left = makeLogo(meta['header-logo-left'], meta['header-logo-left-url'],
-      meta['header-logo-left-height'], "header-logo-left")
-    local header_img_right = makeLogo(meta['header-logo-right'], meta['header-logo-right-url'],
-      meta['header-logo-right-height'], "header-logo-right")
+  return pandoc.Image("", path, "", image_attr)
+end
 
-    local div = pandoc.Div(
-      {
-        header_img_left,
-        header_img_right
-      },
-      {class = 'reveal-header'})
-    table.insert(blocks, div)
+--- Wrap an inline in a link when URL exists.
+--- @param inline Inline The inline to wrap.
+--- @param url string|nil URL target.
+--- @return Inline
+local function with_optional_link(inline, url)
+  if url == nil then
+    return inline
+  end
+
+  return pandoc.Link(inline, url)
+end
+
+--- Build one logo container as a Div block.
+--- @param path string|nil Logo image path.
+--- @param url string|nil Optional link for the logo.
+--- @param height string|nil Optional CSS height.
+--- @param class_name string CSS class to apply to the container.
+--- @return Block
+local function make_logo_div(path, url, height, class_name)
+  if path == nil then
+    -- Keep an empty placeholder so the two-column layout remains stable.
+    return pandoc.Div({}, { class = class_name })
+  end
+
+  local image = make_image(path, height)
+  local content = with_optional_link(image, url)
+  return pandoc.Div({ pandoc.Plain({ content }) }, { class = class_name })
+end
+
+--- Read all extension options from document metadata.
+--- @param meta Meta
+--- @return table
+local function read_options(meta)
+  return {
+    left_path = to_non_empty_string(meta["header-logo-left"]),
+    left_url = to_non_empty_string(meta["header-logo-left-url"]),
+    left_height = to_non_empty_string(meta["header-logo-left-height"]),
+    right_path = to_non_empty_string(meta["header-logo-right"]),
+    right_url = to_non_empty_string(meta["header-logo-right-url"]),
+    right_height = to_non_empty_string(meta["header-logo-right-height"])
+  }
+end
+
+if quarto.doc.is_format("revealjs") then
+  ensure_html_dependencies()
+end
+
+--- Pandoc document filter entrypoint.
+--- @param doc Pandoc
+--- @return Pandoc
+function Pandoc(doc)
+  if not quarto.doc.is_format("revealjs") then
     return doc
   end
+
+  local options = read_options(doc.meta)
+  local left_logo = make_logo_div(
+    options.left_path,
+    options.left_url,
+    options.left_height,
+    "header-logo-left"
+  )
+  local right_logo = make_logo_div(
+    options.right_path,
+    options.right_url,
+    options.right_height,
+    "header-logo-right"
+  )
+
+  local header = pandoc.Div(
+    { left_logo, right_logo },
+    { class = "reveal-header" }
+  )
+
+  table.insert(doc.blocks, header)
+  return doc
 end
