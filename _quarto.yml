@@ -3,14 +3,29 @@ project:
   output-dir: docs
 
 website:
+  title: "revealjs-header"
+  site-url: "https://royfrancis.github.io/quarto-revealjs-header/"
+  description: "A quarto extension to add logos to revealjs presentation"
+  navbar:
+    left:
+      - text: "Home"
+        href: "index.html"
+        aria-label: "Home"
+      - text: "Versions"
+        href: "changelog.html"
+        aria-label: "Change log"
+    right:
+      - icon: github
+        aria-label: "GitHub"
+        href: https://github.com/royfrancis/quarto-revealjs-header
   page-footer:
     border: false
     left: "{{< meta current_year >}} • Roy Francis"
     right: "Published with [Quarto](https://quarto.org/) v{{< meta quarto_version >}}"
-  site-url: "https://royfrancis.github.io/revealjs-header/"
 
 format:
   html:
+    theme: pulse
     title-block-banner: true
     title: revealjs-header
     subtitle: Add logos to revealjs presentation
