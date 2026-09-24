@@ -37,8 +37,8 @@ Add parameters to `format: revealjs`.
 |`header-logo-right`|Add a logo to top right|
 |`header-logo-left-height`|Height of left logo in css units|
 |`header-logo-right-height`|Height of right logo in css units|
-|`header-logo-left-url`|Add a clickable link to the left logo|
-|`header-logo-right-url`|Add a clickable link to the right logo|
+|`header-logo-left-url`|Add a path/url to the left logo|
+|`header-logo-right-url`|Add a path/url to the right logo|
 
 ## Example
 
@@ -51,20 +51,21 @@ format:
     header-logo-left-url: https://quarto.org
     header-logo-left-height: 2em
     header-logo-right: reveal.svg
-    header-logo-right-url: https://revealjs.com
+    header-logo-right-url: ../index.qmd
     header-logo-right-height: 50px
 ```
 
 ## All demos
 
-- [Demo with left and right logos and no urls](tests/demo-no-url/index.html)
+- [Demo with both logos and no url](tests/demo-no-url/index.html)
 - [Demo with left logo and url](tests/demo-left/index.html)
 - [Demo with left logo and no url](tests/demo-left-no-url/index.html)
-- [Demo with right logo and urls](tests/demo-right/index.html)
+- [Demo with right logo and url](tests/demo-right/index.html)
 - [Demo with right logo and no url](tests/demo-right-no-url/index.html)
 - [Demo with both logos and custom height](tests/demo-height/index.html)
-- [Demo with left logo and custom height](tests/demo-height/index.html)
+- [Demo with left logo and custom height](tests/demo-left-height/index.html)
 - [Demo with three logos](tests/demo-default/index.html)
+- [Demo with both logos and relative links](tests/demo-relative-link/index.html)
 
 ## Acknowledgements
 

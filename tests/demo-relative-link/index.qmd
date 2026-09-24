@@ -1,0 +1,19 @@
+---
+title: Relative link logos
+subtitle: Both logos with relative .qmd link targets
+format:
+  revealjs:
+    header-logo-left: ../quarto.png
+    header-logo-left-url: ../../index.qmd
+    header-logo-right: ../reveal.svg
+    header-logo-right-url: ../../index.qmd
+---
+
+```
+format:
+  revealjs:
+    header-logo-left: ../quarto.png
+    header-logo-left-url: ../../index.qmd
+    header-logo-right: ../reveal.svg
+    header-logo-right-url: ../../index.qmd
+```

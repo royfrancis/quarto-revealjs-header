@@ -17,7 +17,7 @@ format:
 - Install extension to root of the project
 
 ```bash
-quarto add royfrancis/revealjs-header
+quarto add royfrancis/quarto-revealjs-header
 ```
 
 ## Usage

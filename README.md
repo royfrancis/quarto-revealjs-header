@@ -33,10 +33,10 @@ filters:
 |---|---|
 |`header-logo-left`|Add a logo to top left|
 |`header-logo-right`|Add a logo to top right|
-|`header-logo-left-height`|Height of left logo in css units|
-|`header-logo-right-height`|Height of right logo in css units|
-|`header-logo-left-url`|Add a clickable link to the left logo|
-|`header-logo-right-url`|Add a clickable link to the right logo|
+|`header-logo-left-height`|Height of left logo in css units at normal window size. Logos scale up/down together with the slide content, so the on-screen size grows on large screens and shrinks on small ones.|
+|`header-logo-right-height`|Height of right logo in css units at normal window size. Logos scale up/down together with the slide content, so the on-screen size grows on large screens and shrinks on small ones.|
+|`header-logo-left-url`|Add a clickable link to the left logo. Accepts an absolute URL or a path relative to the `.qmd` file (e.g. `../index.qmd` renders as a link to `../index.html`)|
+|`header-logo-right-url`|Add a clickable link to the right logo. Accepts an absolute URL or a path relative to the `.qmd` file (e.g. `../index.qmd` renders as a link to `../index.html`)|
 
 For more information, click [here](https://royfrancis.github.io/quarto-revealjs-header).
 
