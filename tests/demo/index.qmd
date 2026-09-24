@@ -6,7 +6,7 @@ date-format: DD-MMM-YYYY
 format:
   revealjs:
     header-logo-left: ../quarto.png
-    header-logo-left-url: https://royfrancis.com/revealjs-header
+    header-logo-left-url: https://royfrancis.com/quarto-revealjs-header
     header-logo-right: ../reveal.svg
     header-logo-right-url: https://revealjs.com
 ---
